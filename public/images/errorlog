@@ -1,0 +1,80 @@
+[16-Jun-2016 13:15:33 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:15:37 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:15:37 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:19:12 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08006] [7] FATAL:  no pg_hba.conf entry for host "::1", user "malicarr_jobs_admin", database "malicarr_jobs", SSL off' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:19:26 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08006] [7] FATAL:  no pg_hba.conf entry for host "::1", user "malicarr_jobs_admin", database "malicarr_jobs", SSL off' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:19:31 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[08006] [7] FATAL:  no pg_hba.conf entry for host "::1", user "malicarr_jobs_admin", database "malicarr_jobs", SSL off' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('pgsql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:32:00 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'malicarr_jobs_admin'@'localhost' (using password: YES)' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('mysql:dbname=ma...', 'malicarr_jobs_a...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166
+[16-Jun-2016 13:33:00 America/Montreal] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'malicarr_jobsadm'@'localhost' to database 'malicarr_jobs'' in /home/malicarr/public_html/models/JobOfferService.php:166
+Stack trace:
+#0 /home/malicarr/public_html/models/JobOfferService.php(166): PDO->__construct('mysql:dbname=ma...', 'malicarr_jobsad...', '12345')
+#1 /home/malicarr/public_html/models/JobOfferService.php(14): JobOfferService->initJobOffers()
+#2 /home/malicarr/public_html/presenters/JobOffersPresenter.php(18): JobOfferService->JobOfferService()
+#3 /home/malicarr/public_html/AppController.php(59): JobOffersPresenter->JobOffersPresenter(Object(JobOffersView))
+#4 /home/malicarr/public_html/AppController.php(27): AppController->bind()
+#5 /home/malicarr/public_html/index.php(17): AppController->AppController(Object(Session))
+#6 {main}
+  thrown in /home/malicarr/public_html/models/JobOfferService.php on line 166

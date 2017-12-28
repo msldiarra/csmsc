@@ -1,0 +1,223 @@
+input AddBureauInput {
+  viewerId: String!
+  locationRef: String!
+  name: String!
+  members: [BureauInput]
+  mediaNames: [String]
+  clientMutationId: String!
+}
+
+type AddBureauPayload {
+  viewer: Viewer
+  bureauRef: String
+  clientMutationId: String!
+}
+
+input AddMemberInput {
+  viewerId: String!
+  locationRef: String!
+  bureauRef: String!
+  firstName: String!
+  lastName: String!
+  nina: String!
+  contact: String!
+  clientMutationId: String!
+}
+
+type AddMemberPayload {
+  viewer: Viewer
+  member: Member
+  clientMutationId: String!
+}
+
+input AttachMediaInput {
+  viewerId: String!
+  uri: String!
+  name: String!
+  clientMutationId: String!
+}
+
+type AttachMediaPayload {
+  viewer: Viewer
+  clientMutationId: String!
+}
+
+type Bureau implements Node {
+  id: ID!
+  ref: String
+  name: String
+  location: Location
+  members: [Member]
+  media(after: String, first: Int, before: String, last: Int): MediasConnection
+}
+
+type BureauConnection {
+  pageInfo: PageInfo!
+  edges: [BureauEdge]
+}
+
+type BureauEdge {
+  node: Bureau
+  cursor: String!
+}
+
+input BureauInput {
+  roleId: String!
+  firstName: String!
+  lastName: String!
+  nina: String
+  contact: String
+  locationId: String!
+}
+
+input DeleteMediaInput {
+  viewerId: String!
+  mediaId: String!
+  mediaName: String!
+  clientMutationId: String!
+}
+
+type DeleteMediaPayload {
+  deletedMediaId: String
+  viewer: Viewer
+  clientMutationId: String!
+}
+
+input EditBureauInput {
+  viewerId: String!
+  locationRef: String!
+  bureauId: String!
+  ref: String!
+  name: String!
+  members: [BureauInput]
+  mediaNames: [String]
+  clientMutationId: String!
+}
+
+type EditBureauPayload {
+  viewer: Viewer
+  bureau: Bureau
+  clientMutationId: String!
+}
+
+type Location implements Node {
+  id: ID!
+  ref: String
+  name: String
+  type: Int
+}
+
+type LocationConnection {
+  pageInfo: PageInfo!
+  edges: [LocationEdge]
+}
+
+type LocationEdge {
+  node: Location
+  cursor: String!
+}
+
+type Locations implements Node {
+  id: ID!
+  ref: String
+  name: String
+  type: Int
+}
+
+type LocationsConnection {
+  pageInfo: PageInfo!
+  edges: [LocationsEdge]
+}
+
+type LocationsEdge {
+  node: Locations
+  cursor: String!
+}
+
+type Media implements Node {
+  id: ID!
+  uri: String
+  name: String
+  mime_type: String
+}
+
+type MediasConnection {
+  pageInfo: PageInfo!
+  edges: [MediasEdge]
+}
+
+type MediasEdge {
+  node: Media
+  cursor: String!
+}
+
+type Member implements Node {
+  id: ID!
+  firstName: String
+  lastName: String
+  nina: String
+  contact: String
+  location: Location
+  bureau: Bureau
+  role: Role
+}
+
+type MemberConnection {
+  pageInfo: PageInfo!
+  edges: [MemberEdge]
+}
+
+type MemberEdge {
+  node: Member
+  cursor: String!
+}
+
+type Mutation {
+  addBureauMutation(input: AddBureauInput!): AddBureauPayload
+  editBureauMutation(input: EditBureauInput!): EditBureauPayload
+  addMemberMutation(input: AddMemberInput!): AddMemberPayload
+  attachMediaMutation(input: AttachMediaInput!): AttachMediaPayload
+  deleteMediaMutation(input: DeleteMediaInput!): DeleteMediaPayload
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  node(id: ID!): Node
+  viewer(viewerId: Int): Viewer
+}
+
+type Role implements Node {
+  id: ID!
+  name: String
+}
+
+type User implements Node {
+  id: ID!
+  firstName: String
+  lastName: String
+  login: String
+  email: String
+  enabled: Boolean
+}
+
+type Viewer implements Node {
+  id: ID!
+  user: User
+  roles: [Role]
+  bureau(ref: String): Bureau
+  bureauList(after: String, first: Int, before: String, last: Int, locationRef: String!): BureauConnection
+  memberList(after: String, first: Int, before: String, last: Int, bureauRef: String!): MemberConnection
+  locations(after: String, first: Int, before: String, last: Int, search: String!): LocationsConnection
+  communes(after: String, first: Int, before: String, last: Int, search: String!): LocationConnection
+  vfq(after: String, first: Int, before: String, last: Int, search: String!, communeRef: String!): LocationConnection
+}
