@@ -1,23 +1,22 @@
 import Relay from 'react-relay';
 
-export default class DeleteMediaMutation extends Relay.Mutation {
+export default class DeleteMemberMutation extends Relay.Mutation {
 
     getMutation() {
-        return Relay.QL`mutation {deleteMediaMutation}`;
+        return Relay.QL`mutation {deleteMemberMutation}`;
     }
 
     getVariables() {
         return {
             viewerId: this.props.viewerId,
-            mediaId: this.props.mediaId,
-            mediaName: this.props.mediaName,
+            memberId: this.props.memberId
         };
     }
 
     getFatQuery() {
         return Relay.QL`
-          fragment on DeleteMediaPayload {
-              deletedMediaId
+          fragment on DeleteMemberPayload {
+              deletedMemberId
               viewer
           }
     `;
@@ -29,9 +28,9 @@ export default class DeleteMediaMutation extends Relay.Mutation {
                 type: 'RANGE_DELETE',
                 parentName: 'viewer',
                 parentID: this.props.viewer.id,
-                connectionName: 'Medias',
-                deletedIDFieldName: 'deletedMediaId',
-                pathToConnection: ['viewer', 'bureau', 'media']
+                connectionName: '',
+                deletedIDFieldName: 'deletedMemberId',
+                pathToConnection: ['viewer', 'memberList']
             }
         ]
     }

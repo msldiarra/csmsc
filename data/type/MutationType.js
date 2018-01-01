@@ -6,6 +6,7 @@ import EditBureauMutation from '../mutation/EditBureauMutation'
 import AddMemberMutation from '../mutation/AddMemberMutation'
 import AttachMediaMutation from '../mutation/AttachMediaMutation'
 import DeleteMediaMutation from '../mutation/DeleteMediaMutation'
+import DeleteMemberMutation from '../mutation/DeleteMemberMutation'
 
 
 
@@ -16,6 +17,7 @@ export default new GraphQLObjectType({
         editBureauMutation : EditBureauMutation,
         addMemberMutation : AddMemberMutation,
         attachMediaMutation : AttachMediaMutation,
-        deleteMediaMutation : DeleteMediaMutation
+        deleteMediaMutation : DeleteMediaMutation,
+        deleteMemberMutation : DeleteMemberMutation,
     })
 });

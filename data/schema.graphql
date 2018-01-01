@@ -83,6 +83,18 @@ type DeleteMediaPayload {
   clientMutationId: String!
 }
 
+input DeleteMemberInput {
+  viewerId: String!
+  memberId: String!
+  clientMutationId: String!
+}
+
+type DeleteMemberPayload {
+  deletedMemberId: String
+  viewer: Viewer
+  clientMutationId: String!
+}
+
 input EditBureauInput {
   viewerId: String!
   locationRef: String!
@@ -178,6 +190,7 @@ type Mutation {
   addMemberMutation(input: AddMemberInput!): AddMemberPayload
   attachMediaMutation(input: AttachMediaInput!): AttachMediaPayload
   deleteMediaMutation(input: DeleteMediaInput!): DeleteMediaPayload
+  deleteMemberMutation(input: DeleteMemberInput!): DeleteMemberPayload
 }
 
 interface Node {

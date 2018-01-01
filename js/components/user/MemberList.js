@@ -1,12 +1,42 @@
 import React from 'react'
 import Relay from 'react-relay'
 import SearchLocation from './SearchLocation'
+import DeleteMemberMutation from '../mutation/DeleteMemberMutation'
 
 class MemberList extends React.Component {
 
 
     constructor(props) {
         super(props);
+    }
+
+
+    handleClick(e) {
+
+        e.preventDefault()
+
+        console.log(this.props)
+
+        const id = e.target.parentNode.getAttribute('data-id');
+
+        var deleteMemberMutation = new DeleteMemberMutation({
+            viewer: this.props.viewer,
+            viewerId: this.props.viewer.id,
+            memberId: id
+        });
+
+        var onSuccess = () =>  this.setState(
+            {successMessage : "Membre supprimé!", loading: false},
+            () => {
+                setTimeout(() => this.setState({successMessage : ""}), 4000)
+            }
+        );
+
+        var onFailure = (transaction) => this.setState({message : "Désolé, nous avons rencontré un problème lors de l'enregistrement." +
+        " Contactez l'administrateur"});
+
+        Relay.Store.commitUpdate(deleteMemberMutation, {onSuccess, onFailure})
+
     }
 
     render() {
@@ -24,6 +54,11 @@ class MemberList extends React.Component {
                         <td>{edge.node.nina}</td>
                         <td>{edge.node.contact}</td>
                         <td>{edge.node.location.name}</td>
+                        <td>
+                            <span className="opacity-54" data-id={edge.node.id} data-name={edge.node.name} onClick={this.handleClick.bind(this)} >
+                                <i className="fa fa-trash-o" aria-hidden="true"></i>
+                            </span>
+                        </td>
                     </tr>
                 )
             }.bind(this));
@@ -56,6 +91,7 @@ class MemberList extends React.Component {
                         <th>NINA</th>
                         <th>Contact</th>
                         <th>VFQ</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,6 +136,7 @@ export default Relay.createContainer(MemberList, {
     fragments: {
         viewer: (vars) => Relay.QL`
           fragment on Viewer {
+               id
                bureau(ref: $bureauRef) {
                   id
                   name
@@ -125,6 +162,7 @@ export default Relay.createContainer(MemberList, {
                   }
                }
                ${SearchLocation.getFragment('viewer', vars)}
+               ${DeleteMemberMutation.getFragment('viewer', vars)}
           }
     `,
     }
