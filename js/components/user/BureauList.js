@@ -83,9 +83,9 @@ class BureauList extends React.Component {
 
                 <div className="col-md-12">
                     <div className="form-group">
-                        <div className="col-md-4 center-block">
+                        <div className="col-md-4 col-sm-12 col-xs-12 center-block">
                             <label className="opacity-87">Localité</label>
-                            <div className="input-group col-md-12">
+                            <div className="input-group col-md-12 col-sm-12 col-xs-12">
                                 <SearchLocation {...this.props}  onLocationEnter={this.onLocationEnter.bind(this)} />
                             </div>
                         </div>

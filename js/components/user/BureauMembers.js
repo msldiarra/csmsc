@@ -46,7 +46,7 @@ class BureauMembers extends React.Component {
         if(this.props.viewer.memberList) {
             memberList = this.props.viewer.memberList.edges.map(function (edge) {
                 return (
-                    <div key={fromGlobalId(edge.node.id).id} className="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                    <div key={fromGlobalId(edge.node.id).id} className="col-xs-12 col-sm-12 col-md-7 col-lg-7 center-block">
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <h4 className="panel-title">{edge.node.role.name}</h4>
@@ -95,7 +95,7 @@ class BureauMembers extends React.Component {
                     <br/>
                 </div>
 
-                <div className="col-md-10 center-block">
+                <div className="col-md-12 center-block">
                     <h4 className="text-center">Bureau : {this.props.viewer.bureau.name} &nbsp;
                         <small>
                             <a href={"/#/bureau/" + this.props.viewer.bureau.ref + "/edit"}>
