@@ -422,7 +422,8 @@ thead {
 .message span {margin: 0 auto;}
 
 .autocomplete ul li div { padding-left:10px;}
-.autocomplete ul li:hover,  .autocomplete ul li:focus { cursor: pointer;
+.autocomplete ul li:hover,  .autocomplete ul li:focus { cursor: point
+er;
     box-shadow: rgba(0,0,0,0.3) 0 16px 16px 0;
     -webkit-box-shadow: rgba(0,0,0,0.3) 0 16px 16px 0;
     -moz-box-shadow: rgba(0,0,0,0.3) 0 16px 16px 0;
@@ -586,7 +587,7 @@ dd label {
 
 .padding-right-15 { padding-right: 15px !important;}
 
-.details ul {list-style-type: none; padding-bottom:15px; background: #fff;}
+.details ul {list-style-type: none; padding-bottom:15px; background: #fff; margin:0; padding:0;}
 .details ul li {
     width:100%;
     min-height:50px;

@@ -87,7 +87,7 @@ export const memberType = new GraphQLObjectType({
             bureau: {
                 type: bureauType,
                 description: 'Member\'s bureau',
-                resolve(member) { return member.getBureau()[0]; }
+                resolve(member) { return member.getBureau(); }
             },
             role: {
                 type: roleType,
@@ -136,8 +136,6 @@ export const locationsType = new GraphQLObjectType({
     },
     interfaces: () => [nodeInterface]
 });
-
-
 
 
 export const GraphQLMoment = new GraphQLScalarType({
@@ -220,6 +218,18 @@ export const bureauInputType = new GraphQLInputObjectType({
     }),
 });
 
+export const memberInputType = new GraphQLInputObjectType({
+    name: 'MemberInput',
+    fields: () => ({
+        roleId: { type: new GraphQLNonNull(GraphQLString) },
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+        nina: { type: GraphQLString },
+        contact: { type: GraphQLString },
+        locationId: { type: new GraphQLNonNull(GraphQLString) }
+    }),
+});
+
 export const viewerType = new GraphQLObjectType({
     name: 'Viewer',
     description: 'Application viewer',
@@ -234,6 +244,20 @@ export const viewerType = new GraphQLObjectType({
                 description: "List of bureau role",
                 resolve: () => {
                     return DB.models.role.findAll({where: {name: {$ne: 'Membre'}}});
+                }
+            },
+            roleSearch: {
+                type: new GraphQLList(roleType),
+                description: "List of bureau role",
+                args: {
+                    search: {
+                        name: 'search',
+                        type: GraphQLString
+                    }
+                },
+                resolve: (_, args) => {
+                    const search = args.search ? args.search + '%' : '%';
+                    return DB.models.role.findAll({where: {name: {$iLike: search}}});
                 }
             },
             bureau: {
@@ -287,6 +311,20 @@ export const viewerType = new GraphQLObjectType({
                             }
                             else return []
                         }), args);
+                }
+            },
+            member: {
+                type: memberType,
+                description: "Member",
+                args: {
+                    ...connectionArgs,
+                    memberId: {
+                        name: 'memberId',
+                        type: GraphQLInt
+                    }
+                },
+                resolve: (_,args) => {
+                    return DB.models.member.findOne({where: {id: {$eq: args.memberId}}});
                 }
             },
             locations: {

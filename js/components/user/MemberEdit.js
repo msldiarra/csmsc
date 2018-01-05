@@ -17,7 +17,7 @@ class MemberEdit extends React.Component {
     }
 
     onLocationEnter(location) {
-        this.setState({locationId: location.id, locationName: location.name, locationRef: location.ref}, () => this.handleLineFilled());
+        this.setState({locationId: location.id, locationName: location.name, locationRef: location.ref});
     }
 
     handleLineFilled() {

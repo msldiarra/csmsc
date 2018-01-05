@@ -32,7 +32,11 @@ class BureauList extends React.Component {
         }
 
         const ref = target.getAttribute('data-ref');
-        this.context.router.push('/bureau/' + ref  +  '/edit')
+        this.context.router.push('/bureau/' + ref  +  '/members')
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
 
@@ -70,7 +74,7 @@ class BureauList extends React.Component {
 
 
         return (
-            <div className="container">
+            <div className="">
                 <div className="page-header col-md-12 center-block">
                     <br/>
                     <br/>
@@ -88,10 +92,9 @@ class BureauList extends React.Component {
                 </div>
 
 
-                <div className="col-md-12 min-height">
-                        <div className="col-md-6 center-block details">
-                            <ul className="col-md-12">
-                                <li><h3 className="text-center">Liste des bureaux</h3></li>
+                <div className="col-md-12">
+                        <div className="col-md-6 col-sm-12 col-xs-12 center-block details">
+                            <ul>
                                 {bureauList}
                             </ul>
                         </div>

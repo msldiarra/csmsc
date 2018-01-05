@@ -10,6 +10,10 @@ import Page404 from "../components/Page404";
 import EditBureau from "../components/user/EditBureau";
 import BureauList from "../components/user/BureauList";
 import MemberList from "../components/user/MemberList";
+import AddBureau from "../components/user/AddBureau";
+import BureauMembers from "../components/user/BureauMembers";
+import ModifyMember from "../components/user/ModifyMember";
+import ModifyBureau from "../components/user/ModifyBureau";
 
 class RouteHome extends Relay.Route {
     static queries = {
@@ -52,9 +56,11 @@ export default  <Route>
                     <Route path="/" component={AuthenticatedApp} queries={RouteHome.queries} prepareParams={getParams} >
                         <IndexRoute component={BureauList} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                         <Route path="bureau/new" component={NewBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
-                        <Route path="bureau/:reference/edit" component={EditBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
+                        <Route path="bureau/add" component={AddBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
+                        <Route path="bureau/:reference/edit" component={ModifyBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                         <Route path="bureau/list" component={BureauList} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
-                        <Route path="bureau/:bureauRef/members" component={MemberList} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
+                        <Route path="bureau/:bureauRef/members" component={BureauMembers} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
+                        <Route path="member/:memberId" component={ModifyMember} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                     </Route>
                     <Route path="login" component={Login}  />
                     <Route path="404" component={Page404}  />

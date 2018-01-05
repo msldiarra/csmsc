@@ -5,7 +5,7 @@ import SearchLocation from './SearchLocation'
 import EditMember from './EditMember'
 import DeleteMemberMutation from '../mutation/DeleteMemberMutation'
 
-class MemberList extends React.Component {
+class BureauMembers extends React.Component {
 
 
     constructor(props) {
@@ -16,8 +16,6 @@ class MemberList extends React.Component {
     handleClick(e) {
 
         e.preventDefault()
-
-        console.log(this.props)
 
         const id = e.target.parentNode.getAttribute('data-id');
 
@@ -41,40 +39,45 @@ class MemberList extends React.Component {
 
     }
 
+    handleEdit(e) {
+
+        console.log('edit')
+    }
+
     render() {
 
-        let memberList, popups = ''
+        let memberList = ''
 
         if(this.props.viewer.memberList) {
             memberList = this.props.viewer.memberList.edges.map(function (edge) {
-                const idDesc = "#editMember"  + fromGlobalId(edge.node.id).id
                 return (
-                    <tr key={edge.node.id}>
-                        <th className="role">{edge.node.role.name}</th>
-                        <td>{edge.node.firstName} {edge.node.lastName}</td>
-                        <td>{edge.node.nina}</td>
-                        <td>{edge.node.contact}</td>
-                        <td>{edge.node.location.name}</td>
-                        <td className="row">
-                            <span className="col-md-4" style={{cursor:'pointer'}} data-toggle="modal" data-target={idDesc} >
-                                <i className="fa fa-pencil" aria-hidden="true"></i>
-                            </span>
-
-                            <span className="col-md-4" style={{cursor:'pointer'}} data-id={edge.node.id} data-name={edge.node.name} onClick={this.handleClick.bind(this)} >
-                                <i className="fa fa-trash-o" aria-hidden="true"></i>
-                            </span>
-                        </td>
-                    </tr>
+                    <div key={fromGlobalId(edge.node.id).id} className="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <h4 className="panel-title">{edge.node.role.name}</h4>
+                            </div>
+                            <div className="panel-body">
+                                <h5>{edge.node.firstName} {edge.node.lastName}</h5>
+                                <b>Nina</b> : {edge.node.nina} <br/><br/>
+                                <b>Contact</b> : {edge.node.contact} <br/><br/>
+                                <b>VFQ</b> : {edge.node.location.name} <br/>
+                            </div>
+                            <div className="panel-footer clearfix">
+                                <div className="pull-right">
+                                    <a href={"/#/member/" + edge.node.id}>
+                                       <i className="fa fa-pencil" aria-hidden="true"></i>
+                                   </a>
+                                    &nbsp;&nbsp;&nbsp;
+                                   <span style={{cursor:'pointer'}} data-id={edge.node.id} data-name={edge.node.name} onClick={this.handleClick.bind(this)} >
+                                       <i className="fa fa-trash-o" aria-hidden="true"></i>
+                                   </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )
             }.bind(this));
-
-
-            popups = this.props.viewer.memberList.edges.map(function (edge) {
-                    return <EditMember key={edge.node.id}  member={edge.node} communeRef={edge.node.location.ref} {...this.props}/>
-            }.bind(this));
         }
-
-
 
         if(memberList === "" || memberList.length === 0) {
             memberList = (
@@ -84,63 +87,41 @@ class MemberList extends React.Component {
                     <br/>
                     <br/>
                     <br/>
-                    <br/>
                     <i className="fa fa-3x fa-users"></i>
                     <h3>Aucun membre</h3>
                 </div>
             )
-        } else {
-
-
-            memberList = <div className="panel panel-default">
-                <table className="table table-bordered table-condensed u">
-                    <thead className="">
-                    <tr>
-                        <th>Poste</th>
-                        <th>Nom</th>
-                        <th>NINA</th>
-                        <th>Contact</th>
-                        <th>VFQ</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {memberList}
-                    </tbody>
-                </table>
-            </div>
-
         }
 
-
         return (
-            <div className="container">
+            <div className="">
                 <div className="page-header col-md-12 center-block">
                     <br/>
                     <br/>
                 </div>
 
                 <div className="col-md-10 center-block">
-                    <h3 className="text-center">Liste des membres du bureau : <b>{this.props.viewer.bureau.name}</b></h3>
+                    <h4 className="text-center">Bureau : {this.props.viewer.bureau.name} &nbsp;
+                        <small>
+                            <a href={"/#/bureau/" + this.props.viewer.bureau.ref + "/edit"}>
+                                <i className="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </small>
+                    </h4>
                     <br/>
                     <br/>
-                    <br/>
-
                     {memberList}
-
                 </div>
-
-                {popups}
             </div>
         );
     }
 }
 
-MemberList.contextTypes = {
+BureauMembers.contextTypes = {
     router: React.PropTypes.object.isRequired
 }
 
-export default Relay.createContainer(MemberList, {
+export default Relay.createContainer(BureauMembers, {
 
     initialVariables: {bureauRef: ''},
 
@@ -151,6 +132,7 @@ export default Relay.createContainer(MemberList, {
                bureau(ref: $bureauRef) {
                   id
                   name
+                  ref
                },
                memberList(bureauRef: $bureauRef, first:100) {
                   edges {

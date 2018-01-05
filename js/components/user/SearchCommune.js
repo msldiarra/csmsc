@@ -98,7 +98,7 @@ class SearchCommune extends React.Component {
 
         return (
         <div  ref="commune_area" className="row">
-                <div className="input-group col-md-12">
+                <div className="input-group col-md-12 col-lg-12 col-xs-12">
                     <span className="input-group-addon" aria-hidden="true" id="basic-addon1">
                         <i className="fa fa-location-arrow"></i>
                     </span>

@@ -1,5 +1,5 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql';
-import { mutationWithClientMutationId } from 'graphql-relay';
+import { mutationWithClientMutationId, fromGlobalId} from 'graphql-relay';
 import { DB } from '../database';
 import {viewerType, memberType} from '../type/Types';
 import {getViewer} from '../store/UserStore';
@@ -8,15 +8,16 @@ import Sequelize from 'sequelize';
 import _ from 'lodash';
 
 export default mutationWithClientMutationId({
-    name: 'AddMember',
+    name: 'EditMember',
     inputFields: {
         viewerId: { type: new GraphQLNonNull(GraphQLString) },
-        locationRef: { type: new GraphQLNonNull(GraphQLString) },
-        bureauRef: { type: new GraphQLNonNull(GraphQLString) },
-        firstName: { type: new GraphQLNonNull(GraphQLString) },
-        lastName: { type: new GraphQLNonNull(GraphQLString) },
-        nina: { type: new GraphQLNonNull(GraphQLString) },
-        contact: { type: new GraphQLNonNull(GraphQLString) },
+        memberId: { type: new GraphQLNonNull(GraphQLString) },
+        roleId: { type: GraphQLString },
+        locationRef: { type: GraphQLString},
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString},
+        nina: { type: GraphQLString},
+        contact: { type: GraphQLString},
     },
     outputFields: {
         viewer: {
@@ -29,23 +30,21 @@ export default mutationWithClientMutationId({
 
         }
     },
-    mutateAndGetPayload: ({viewerId, locationRef, bureauRef, firstName, lastName, nina, contact}) => {
+    mutateAndGetPayload: ({viewerId, memberId, locationRef, firstName, lastName, nina, contact, roleId}) => {
 
-        return DB.models.bureau.findOne({where : {ref: bureauRef}})
-            .then(bureau => {
+        return DB.models.member.findOne({where : {id: fromGlobalId(memberId).id}})
+            .then(member => {
 
                 return DB.models.location.findOne({where: {ref: locationRef}})
                     .then(location => {
 
-                        return DB.models.member.create({
-
-                          first_name: firstName,
-                          last_name: lastName,
-                          nina: nina,
-                          contact: contact,
-                          location_id: location.id,
-                          role_id: 14, //membre
-                          bureau_id:bureau.id,
+                        return member.updateAttributes({
+                            first_name: firstName,
+                            last_name: lastName,
+                            nina: nina,
+                            contact: contact,
+                            location_id: location.id,
+                            role_id: fromGlobalId(roleId).id,
                         })
 
                     })

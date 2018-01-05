@@ -112,6 +112,24 @@ type EditBureauPayload {
   clientMutationId: String!
 }
 
+input EditMemberInput {
+  viewerId: String!
+  memberId: String!
+  roleId: String
+  locationRef: String
+  firstName: String
+  lastName: String
+  nina: String
+  contact: String
+  clientMutationId: String!
+}
+
+type EditMemberPayload {
+  viewer: Viewer
+  member: Member
+  clientMutationId: String!
+}
+
 type Location implements Node {
   id: ID!
   ref: String
@@ -184,13 +202,58 @@ type MemberEdge {
   cursor: String!
 }
 
+input MemberInput {
+  roleId: String!
+  firstName: String!
+  lastName: String!
+  nina: String
+  contact: String
+  locationId: String!
+}
+
+input ModifyBureauInput {
+  viewerId: String!
+  locationRef: String!
+  bureauId: String!
+  ref: String!
+  name: String!
+  member: MemberInput
+  mediaNames: [String]
+  clientMutationId: String!
+}
+
+type ModifyBureauPayload {
+  viewer: Viewer
+  bureau: Bureau
+  clientMutationId: String!
+}
+
 type Mutation {
   addBureauMutation(input: AddBureauInput!): AddBureauPayload
+  newBureauMutation(input: NewBureauInput!): NewBureauPayload
   editBureauMutation(input: EditBureauInput!): EditBureauPayload
+  modifyBureauMutation(input: ModifyBureauInput!): ModifyBureauPayload
   addMemberMutation(input: AddMemberInput!): AddMemberPayload
   attachMediaMutation(input: AttachMediaInput!): AttachMediaPayload
   deleteMediaMutation(input: DeleteMediaInput!): DeleteMediaPayload
   deleteMemberMutation(input: DeleteMemberInput!): DeleteMemberPayload
+  editMemberMutation(input: EditMemberInput!): EditMemberPayload
+}
+
+input NewBureauInput {
+  viewerId: String!
+  locationRef: String!
+  bureauRef: String
+  name: String!
+  member: MemberInput
+  mediaNames: [String]
+  clientMutationId: String!
+}
+
+type NewBureauPayload {
+  viewer: Viewer
+  bureauRef: String
+  clientMutationId: String!
 }
 
 interface Node {
@@ -227,9 +290,11 @@ type Viewer implements Node {
   id: ID!
   user: User
   roles: [Role]
+  roleSearch(search: String): [Role]
   bureau(ref: String): Bureau
   bureauList(after: String, first: Int, before: String, last: Int, locationRef: String!): BureauConnection
   memberList(after: String, first: Int, before: String, last: Int, bureauRef: String!): MemberConnection
+  member(after: String, first: Int, before: String, last: Int, memberId: Int): Member
   locations(after: String, first: Int, before: String, last: Int, search: String!): LocationsConnection
   communes(after: String, first: Int, before: String, last: Int, search: String!): LocationConnection
   vfq(after: String, first: Int, before: String, last: Int, search: String!, communeRef: String!): LocationConnection

@@ -73,6 +73,7 @@ class SearchVFQ extends React.Component {
         document.getElementById('root').addEventListener('click', this.handleDocumentClick);
 
         let location = this.props.defaultValue ? this.props.defaultValue : undefined
+
         if(location)
             this.props.onLocationEnter({'id': location.id,'name': location.name, 'ref' : location.ref});
     }
@@ -105,20 +106,25 @@ class SearchVFQ extends React.Component {
 
         return (
         <div  ref="vfq_area" >
+            <div className="input-group col-md-12 col-lg-12 col-xs-12">
+                <span className="input-group-addon" aria-hidden="true" id="basic-addon1">
+                    <i className="fa fa-location-arrow"></i>
+                </span>
                 <input ref="locationInput"
                        type="text"
-                       className="form-control text-center"
+                       className="form-control"
                        placeholder={placeHolder}
                        onChange={this.handleSearch.bind(this)}
                        autoComplete="off"
                        tabIndex="1"
                        defaultValue={locationName}
                 />
-                <div className="autocomplete col-md-12 col-lg-12 col-xs-12 row" style={{visibility :  visibility}}>
-                    <ul id="places" tabIndex="1" className="col-md-12 col-lg-12 col-xs-12">
-                        {vfqs}
-                    </ul>
-                </div>
+            </div>
+            <div className="autocomplete col-md-12 col-lg-12 col-xs-12 row" style={{visibility :  visibility}}>
+                <ul id="places" tabIndex="1" className="col-md-12 col-lg-12 col-xs-12">
+                    {vfqs}
+                </ul>
+            </div>
         </div>)
     }
 }
