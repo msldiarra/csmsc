@@ -79,8 +79,6 @@ export default mutationWithClientMutationId({
                     DB.models.member.findOne({where:{ $and:[{role_id: roleId}, {bureau_id: bureau.id}]}})
                         .then(dbMember => {
 
-                            console.log(dbMember)
-
                             if(dbMember) {
                                 dbMember.updateAttributes({
                                     first_name: member.firstName,

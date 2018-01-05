@@ -120,8 +120,6 @@ export default mutationWithClientMutationId({
                 })
                 .then(bureau => {
 
-                    console.log(member)
-
                     DB.models.member.create({
                         first_name: member.firstName,
                         last_name: member.lastName,
@@ -135,7 +133,6 @@ export default mutationWithClientMutationId({
                     return bureau
                 })
                 .catch(Sequelize.Error, (error) => {
-                    console.log(error)
                     throw new Sequelize.Error;
                 })
                 .then((bureau) => {

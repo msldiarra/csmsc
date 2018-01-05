@@ -7,7 +7,8 @@ export default class AppMessage extends React.Component {
     render() {
 
         var text = this.props.message;
-        var messageClass = this.props.class == "success" ? "alert alert-success text-center" : "alert alert-danger text-center";
+
+        var messageClass = this.props.class === "success" ? "alert alert-success text-center" : "alert alert-danger text-center";
 
 
         return (

@@ -11,7 +11,7 @@ export default class Header extends React.Component {
             headerItems =
                 <ul className="nav navbar-nav navbar-right opacity-54">
                     <li data-toggle="collapse" data-target=".navbar-collapse">
-                        <Link to="/bureau/new">Ajouter un bureau</Link>
+                        <Link to="/bureau/add">Ajouter un bureau</Link>
                     </li>
                     <li data-toggle="collapse" data-target=".navbar-collapse">
                         <Link to="/bureau/list">Chercher un bureau</Link>

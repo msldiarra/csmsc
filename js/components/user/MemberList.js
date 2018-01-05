@@ -17,8 +17,6 @@ class MemberList extends React.Component {
 
         e.preventDefault()
 
-        console.log(this.props)
-
         const id = e.target.parentNode.getAttribute('data-id');
 
         var deleteMemberMutation = new DeleteMemberMutation({

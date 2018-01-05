@@ -18,6 +18,7 @@ class BureauList extends React.Component {
 
     onLocationEnter(location) {
         this.props.relay.setVariables({locationRef: location.ref})
+        window.scrollTo(0, 0);
     }
 
     handleClick(e) {

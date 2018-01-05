@@ -59,7 +59,7 @@ class ModifyBureau extends React.Component {
     }
 
     onAddMemberForm() {
-        this.setState({addMemberForm: true}, () => console.log(this.refs.member))
+        this.setState({addMemberForm: true})
     }
 
     onEditBureau(e) {
@@ -195,7 +195,7 @@ class ModifyBureau extends React.Component {
                 </div>
 
                 {errorMessage? <AppMessage message={errorMessage} /> : ''}
-                {successMessage? <AppMessage message={successMessage} className="success"/> : ''}
+                {successMessage? <AppMessage message={successMessage} class="success"/> : ''}
 
                 <form className="form-horizontal padding-20" name="add-property">
                     <div className="page-content row">

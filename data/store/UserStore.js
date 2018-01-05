@@ -16,26 +16,6 @@ export function registerViewerId(viewer) {
     }
 }
 
-/*
-export function registerViewerId(viewer) {
-
-    console.log('------------------- users before --------------------------')
-    console.log(users)
-    users[viewer.id] = viewer
-
-    console.log('------------------- users after --------------------------')
-    console.log(users)
-
-}
-*/
-
 export function getViewer(viewerId) {
-
-    console.log("getViewer with Id : " + viewerId)
-    console.log("registered users: ")
-    console.log(users)
-    console.log("getViewer : " + JSON.stringify(users[viewerId]))
-
-    //return users[viewerId] == undefined ? DB.models.user.findOne({where: {id: viewerId}}) : users[viewerId]
     return users['me'];
 }

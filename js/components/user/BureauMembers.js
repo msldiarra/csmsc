@@ -39,11 +39,6 @@ class BureauMembers extends React.Component {
 
     }
 
-    handleEdit(e) {
-
-        console.log('edit')
-    }
-
     render() {
 
         let memberList = ''

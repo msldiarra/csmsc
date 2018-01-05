@@ -55,7 +55,6 @@ function getParams(params, route){
 export default  <Route>
                     <Route path="/" component={AuthenticatedApp} queries={RouteHome.queries} prepareParams={getParams} >
                         <IndexRoute component={BureauList} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
-                        <Route path="bureau/new" component={NewBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                         <Route path="bureau/add" component={AddBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                         <Route path="bureau/:reference/edit" component={ModifyBureau} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />
                         <Route path="bureau/list" component={BureauList} queries={RouteHome.queries} prepareParams={getParams} onEnter={requireAuth} />

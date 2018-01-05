@@ -59,7 +59,7 @@ class AddBureau extends React.Component {
     }
 
     onAddMemberForm() {
-        this.setState({addMemberForm: true}, () => console.log(this.refs.member))
+        this.setState({addMemberForm: true})
     }
 
     onAddMember(member) {
@@ -167,12 +167,12 @@ class AddBureau extends React.Component {
 
                         <div className="col-md-12 center-block" >
                             <div className="col-md-6 col-lg-4 col-xs-12 col-sm-8 center-block">
-                                <h3>
+                                <h4>
                                     Nouveau bureau {'  '}
                                     <div onClick={this.onAddMemberForm.bind(this)} style={{float: 'right', cursor: 'pointer'}}>
                                         <i className="fa fa-user-plus opacity-54" />
                                     </div>
-                                </h3>
+                                </h4>
                             </div>
                         </div>
                         <br/>

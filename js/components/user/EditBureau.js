@@ -75,10 +75,6 @@ class EditBureau extends React.Component {
             return ;
         }
 
-        console.log('Sent memebers *****************')
-        console.log(_.values(this.state.members))
-
-
         var editBureauMutation = new EditBureauMutation({
             viewer: this.props.viewer,
             viewerId: this.props.viewer.id,
@@ -139,19 +135,8 @@ class EditBureau extends React.Component {
 
         let members = this.state.members;
 
-        console.log('------------------------------')
-        console.log('members *************** ')
-        console.log(members)
-
-        console.log('------------------------------')
-        console.log('member ')
-        console.log(member)
-
         if(member) {
             members[member.roleId] = member
-            console.log('-----------------------------')
-            console.log('new member   ')
-            console.log(members)
             this.setState({members : members})
         }
     }
@@ -176,8 +161,6 @@ class EditBureau extends React.Component {
         })
 
         this.setState({members: members});
-        console.log(members);
-
         window.scrollTo(0, 0);
     }
 
